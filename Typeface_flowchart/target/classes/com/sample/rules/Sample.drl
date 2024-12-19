@@ -1,0 +1,728 @@
+package com.sample.rules
+
+global com.sample.Interface gui;
+
+import com.sample.Answer;
+
+
+rule "So you need a typeface"
+	when 
+		not Answer(question == "Start")
+	then 
+		gui.displayQuestion("So you need a typeface?", "Yes", "No");
+		insert(new Answer("Start", "Asked"));
+end
+
+rule "Need of typeface"
+	when 
+		Answer(question == "So you need a typeface?", response == "Yes");
+	then
+		gui.displayQuestion("Start out by choosing the kind of project that you'll need your typeface for:", "LOGO", "INVITATION","NEWSPAPER", "BOOK", "INFOGRAPHIC");
+end
+
+rule "No need of typeface"
+	when 
+		Answer(question == "So you need a typeface?", response == "No");
+	then
+		gui.shutdown();
+end
+		
+//!!!!!!!!!!!LOGO!!!!!!!!!!!!!!!
+
+rule "Serif"
+	when 
+		Answer(question == "Start out by choosing the kind of project that you'll need your typeface for:", response == "LOGO");
+	then
+		gui.displayQuestion("A SANS SERIF, MAYBE? OR PERHAPS A SERIF?", "SANS SERIF", "SERIF");
+end
+
+rule "Geometrics"
+	when 
+		Answer(question == "A SANS SERIF, MAYBE? OR PERHAPS A SERIF?", response == "SANS SERIF");
+	then
+		gui.displayQuestion("YOU LIKE GEOMETRICS?", "YES", "NO");
+end
+
+rule "Futura"
+	when 
+		Answer(question == "YOU LIKE GEOMETRICS?", response == "YES");
+	then
+		gui.displayQuestion("DO YOU LIKE FUTURA?", "YES", "NO");
+end
+
+rule "Futura answer"
+	when 
+		Answer(question == "DO YOU LIKE FUTURA?", response == "YES");
+	then
+		//gui.displayQuestion("FUTURA");
+		gui.displayImage("futura");
+end
+
+rule "Metro answer"
+	when 
+		Answer(question == "DO YOU LIKE FUTURA?", response == "NO");
+	then
+		//gui.displayQuestion("METRO");
+		gui.displayImage("metro");
+end
+
+rule "Neo-grotesk"
+	when 
+		Answer(question == "YOU LIKE GEOMETRICS?", response == "NO");
+	then
+		gui.displayQuestion("A NEO-GROTESK PERHAPS?", "YES", "NO");
+end
+
+rule "Science fiction"
+	when 
+		Answer(question == "A NEO-GROTESK PERHAPS?", response == "YES");
+	then
+		gui.displayQuestion("IF I SAY ''SCIENCE FICTION MOVIES ARE MY FAVOURITE''?", "GOOD", "BAD");
+end
+
+rule "Eurostile answer"
+	when 
+		Answer(question == "IF I SAY ''SCIENCE FICTION MOVIES ARE MY FAVOURITE''?", response == "GOOD");
+	then
+		//gui.displayQuestion("EUROSTILE");
+		gui.displayImage("eurostile");
+end
+
+rule "Helvetica answer"
+	when 
+		Answer(question == "IF I SAY ''SCIENCE FICTION MOVIES ARE MY FAVOURITE''?", response == "BAD");
+	then
+		//gui.displayQuestion("HELVETICA");
+		gui.displayImage("helvetica");
+end
+
+rule "Humanistic"
+	when 
+		Answer(question == "A NEO-GROTESK PERHAPS?", response == "NO");
+	then
+		gui.displayQuestion("SOMETHING HUMANISTIC, THEN?", "YES", "NO");
+end
+
+rule "Adobe look"
+	when 
+		Answer(question == "SOMETHING HUMANISTIC, THEN?", response == "YES");
+	then
+		gui.displayQuestion("DO YOU LIKE THE LOOK OF ADOBE?", "YES", "NO");
+end
+
+rule "Myriad answer"
+	when 
+		Answer(question == "DO YOU LIKE THE LOOK OF ADOBE?", response == "YES");
+	then
+		//gui.displayQuestion("MYRIAD");
+		gui.displayImage("myriad");
+end
+
+rule "Frutiger answer"
+	when 
+		Answer(question == "DO YOU LIKE THE LOOK OF ADOBE?", response == "NO");
+	then
+		//gui.displayQuestion("FRUTIGER");
+		gui.displayImage("frutiger");
+end
+
+rule "Something classic"
+	when 
+		Answer(question == "SOMETHING HUMANISTIC, THEN?", response == "NO");
+	then
+		gui.displayQuestion("HOW ABOUT SOMETHING CLASSIC?", "YES", "NO");
+end
+
+rule "Akzidenz Grotesk answer"
+	when 
+		Answer(question == "HOW ABOUT SOMETHING CLASSIC?", response == "YES");
+	then
+		//gui.displayQuestion("AKZIDENZ GROTESK");
+		gui.displayImage("akzidenz_grotesk");
+end
+
+rule "Something decorative"
+	when 
+		Answer(question == "HOW ABOUT SOMETHING CLASSIC?", response == "NO");
+	then
+		gui.displayQuestion("THEN WE ONLY HAVE SOMETHING DECORATIVE", "OK");
+end
+
+rule "Peignot answer"
+	when 
+		Answer(question == "THEN WE ONLY HAVE SOMETHING DECORATIVE", response == "OK");
+	then
+		//gui.displayQuestion("PEIGNOT");
+		gui.displayImage("peignot");
+end
+
+rule "Semi-sans, semi-serif"
+	when 
+		Answer(question == "A SANS SERIF, MAYBE? OR PERHAPS A SERIF?", response == "SERIF");
+	then
+		gui.displayQuestion("HOW DO THE WORDS SEMI-SANS, SEMI-SERIF SOUND?", "GOOD", "BAD");
+end
+
+rule "Rotis answer"
+	when 
+		Answer(question == "HOW DO THE WORDS SEMI-SANS, SEMI-SERIF SOUND?", response == "GOOD");
+	then
+		//gui.displayQuestion("ROTIS");
+		gui.displayImage("rotis");
+end
+
+rule "Something new"
+	when 
+		Answer(question == "HOW DO THE WORDS SEMI-SANS, SEMI-SERIF SOUND?", response == "BAD");
+	then
+		gui.displayQuestion("SOMETHING NEW, GOT SERIFS, GOT SANS?", "GOOD", "BAD");
+end
+
+rule "Fedra answer"
+	when 
+		Answer(question == "SOMETHING NEW, GOT SERIFS, GOT SANS?", response == "GOOD");
+	then
+		//gui.displayQuestion("FEDRA");
+		gui.displayImage("fedra");
+end
+
+rule "Italian restaurant"
+	when 
+		Answer(question == "SOMETHING NEW, GOT SERIFS, GOT SANS?", response == "BAD");
+	then
+		gui.displayQuestion("IS IT AN ITALIAN RESTAURANT?", "YES", "NO");
+end
+
+rule "Bodoni answer"
+	when 
+		Answer(question == "IS IT AN ITALIAN RESTAURANT?", response == "YES");
+	then
+		//gui.displayQuestion("BODONI");
+		gui.displayImage("bodoni");
+end
+
+rule "Office corespondence"
+	when 
+		Answer(question == "IS IT AN ITALIAN RESTAURANT?", response == "NO");
+	then
+		gui.displayQuestion("GOT A WHOLE BUNCH OF OFFICE CORRESPONDENCE", "YES", "NO");
+end
+
+rule "Lexicon answer"
+	when 
+		Answer(question == "GOT A WHOLE BUNCH OF OFFICE CORRESPONDENCE", response == "YES");
+	then
+		//gui.displayQuestion("LEXICON");
+		gui.displayImage("lexicon");
+end
+
+rule "Classic waiting"
+	when 
+		Answer(question == "GOT A WHOLE BUNCH OF OFFICE CORRESPONDENCE", response == "NO");
+	then
+		gui.displayQuestion("HERE WE HAVE A CLASSIC WAITING FOR YOU", "OK");
+end
+
+rule "Palatino answer"
+	when 
+		Answer(question == "HERE WE HAVE A CLASSIC WAITING FOR YOU", response == "OK");
+	then
+		//gui.displayQuestion("PALATINO");
+		gui.displayImage("palatino");
+end
+
+
+
+//!!!!!!!!!INVITATION!!!!!!!!
+rule "Handwritten"
+	when 
+		Answer(question == "Start out by choosing the kind of project that you'll need your typeface for:", response == "INVITATION");
+	then
+		gui.displayQuestion("LIKE SOMETHING HANDWRITTEN, DO YOU?", "YES", "NO");
+end
+
+rule "Calligraphic"
+	when 
+		Answer(question == "LIKE SOMETHING HANDWRITTEN, DO YOU?", response == "YES");
+	then
+		gui.displayQuestion("SOMETHING CALLIGRAPHIC, MAYBE?", "YES", "NO");
+end
+
+rule "Zapfino answer"
+	when 
+		Answer(question == "SOMETHING CALLIGRAPHIC, MAYBE?", response == "YES");
+	then
+		//gui.displayQuestion("ZAPFINO");
+		gui.displayImage("zapfino");
+end
+
+rule "FF Erikrighthand answer"
+	when 
+		Answer(question == "SOMETHING CALLIGRAPHIC, MAYBE?", response == "NO");
+	then
+		//gui.displayQuestion("FF ERIKRIGHTHAND");
+		gui.displayImage("ff_erikighthand");
+end
+
+rule "Fancy"
+	when 
+		Answer(question == "LIKE SOMETHING HANDWRITTEN, DO YOU?", response == "NO");
+	then
+		gui.displayQuestion("HOW ABOUT SOMETHING A BIT FANCY?", "YES", "NO");
+end
+
+rule "Hairlines"
+	when 
+		Answer(question == "HOW ABOUT SOMETHING A BIT FANCY?", response == "YES");
+	then
+		gui.displayQuestion("THIN HAIRLINES OR THINNER HAIRLINES?", "THIN", "THINNER");
+end
+
+rule "Bodoni answer2"
+	when 
+		Answer(question == "THIN HAIRLINES OR THINNER HAIRLINES?", response == "THIN");
+	then
+		gui.displayQuestion("BODONI");
+		gui.displayImage("bodoni");
+end
+
+rule "Readability"
+	when 
+		Answer(question == "THIN HAIRLINES OR THINNER HAIRLINES?", response == "THINNER");
+	then
+		gui.displayQuestion("READABILITY?", "YES", "NO");
+end
+
+rule "Walbaum answer"
+	when 
+		Answer(question == "READABILITY?", response == "YES");
+	then
+		//gui.displayQuestion("WALBAUM");
+		gui.displayImage("walbaum");
+end
+
+rule "Didot answer"
+	when 
+		Answer(question == "READABILITY?", response == "NO");
+	then
+		//gui.displayQuestion("DIDOT");
+		gui.displayImage("didot");
+end
+
+rule "Something fun"
+	when 
+		Answer(question == "HOW ABOUT SOMETHING A BIT FANCY?", response == "NO");
+	then
+		gui.displayQuestion("SOMETHING FUN, THEN?", "FUN");
+end
+
+rule "Alone"
+	when 
+		Answer(question == "SOMETHING FUN, THEN?", response == "FUN");
+	then
+		gui.displayQuestion("ARE YOU ALONE?", "YES");
+end
+
+rule "Come with me"
+	when 
+		Answer(question == "ARE YOU ALONE?", response == "YES");
+	then
+		gui.displayQuestion("OKAY THEN, COME WITH ME", "LET'S GO");
+end
+
+rule "Comic Sans answer"
+	when 
+		Answer(question == "OKAY THEN, COME WITH ME", response == "LET'S GO");
+	then
+		//gui.displayQuestion("COMIC SANS");
+		gui.displayImage("comic_sans");
+end
+
+//!!!!!!!!!!!INFOGRAPHIC!!!!!!!!!!!!!!!
+
+rule "Condensed"
+	when 
+		Answer(question == "Start out by choosing the kind of project that you'll need your typeface for:", response == "INFOGRAPHIC");
+	then
+		gui.displayQuestion("WE ALL LIKE SOMETHING VERY CONDENSED, YES?", "YES", "NO");
+end
+
+rule "Univers answer"
+	when 
+		Answer(question == "WE ALL LIKE SOMETHING VERY CONDENSED, YES?", response == "YES");
+	then
+		//gui.displayQuestion("UNIVERS");
+		gui.displayImage("univers");
+end
+
+rule "Tables"
+	when 
+		Answer(question == "WE ALL LIKE SOMETHING VERY CONDENSED, YES?", response == "NO");
+	then
+		gui.displayQuestion("GOT A LOT OF TABLES, HAVE YOU?", "YES", "NO");
+end
+
+rule "Letter Gothic answer"
+	when 
+		Answer(question == "GOT A LOT OF TABLES, HAVE YOU?", response == "YES");
+	then
+		//gui.displayQuestion("LETTER GOTHIC");
+		gui.displayImage("letter_gothic");
+end
+
+rule "Terminator"
+	when 
+		Answer(question == "GOT A LOT OF TABLES, HAVE YOU?", response == "NO");
+	then
+		gui.displayQuestion("YOU CRIED WHEN WATCHING TERMINATOR", "YES", "NO");
+end
+
+rule "OCR answer"
+	when 
+		Answer(question == "YOU CRIED WHEN WATCHING TERMINATOR", response == "YES");
+	then
+		//gui.displayQuestion("OCR");
+		gui.displayImage("orc");
+end
+
+rule "Hot"
+	when 
+		Answer(question == "YOU CRIED WHEN WATCHING TERMINATOR", response == "NO");
+	then
+		gui.displayQuestion("I MUST SAY THAT THIS FLOWCHART IS LOOKING HOT", "YES");
+end
+
+rule "FF Din answer"
+	when 
+		Answer(question == "I MUST SAY THAT THIS FLOWCHART IS LOOKING HOT", response == "YES");
+	then
+		//gui.displayQuestion("FF DIN");
+		gui.displayImage("ff_din");
+end
+
+
+//!!!!!!!!!!!NEWSPAPER!!!!!!!!!!!!!!!
+
+rule "Newspaper"
+	when 
+		Answer(question == "Start out by choosing the kind of project that you'll need your typeface for:", response == "NEWSPAPER");
+	then
+		gui.displayQuestion("TEXT FACE, DISPLAY OR COMBINATION?", "TEXT FACE", "DISPLAY", "COMBINATION");
+end
+
+//TEXT FACE
+rule "Boring"
+	when 
+		Answer(question == "TEXT FACE, DISPLAY OR COMBINATION?", response == "TEXT FACE");
+	then
+		gui.displayQuestion("DO PEOPLE CALL YOU BORING FROM TIME TO TIME?", "YES", "NO");
+end
+
+rule "Times answer"
+	when 
+		Answer(question == "DO PEOPLE CALL YOU BORING FROM TIME TO TIME?", response == "YES");
+	then
+		//gui.displayQuestion("TIMES");
+		gui.displayImage("times");
+end
+
+rule "Heavily used"
+	when 
+		Answer(question == "DO PEOPLE CALL YOU BORING FROM TIME TO TIME?", response == "NO");
+	then
+		gui.displayQuestion("HOW ABOUT SOMETHING HEAVILY USED?", "YES", "NO");
+end
+
+rule "Miller answer"
+	when 
+		Answer(question == "HOW ABOUT SOMETHING HEAVILY USED?", response == "YES");
+	then
+		//gui.displayQuestion("MILLER");
+		gui.displayImage("miller");
+end
+
+rule "Award winning"
+	when 
+		Answer(question == "HOW ABOUT SOMETHING HEAVILY USED?", response == "NO");
+	then
+		gui.displayQuestion("HOW ABOUT SOMETHING AWARD WINNING?", "GOOD", "BAD");
+end
+
+rule "Proforma answer"
+	when 
+		Answer(question == "HOW ABOUT SOMETHING AWARD WINNING?", response == "GOOD");
+	then
+		//gui.displayQuestion("PERFORMA");
+		gui.displayImage("performa");
+end
+
+rule "Arnhem answer"
+	when 
+		Answer(question == "HOW ABOUT SOMETHING AWARD WINNING?", response == "BAD");
+	then
+		//gui.displayQuestion("ARNHEM");
+		gui.displayImage("arnhem");
+end
+
+//DISPLAY
+rule "Traditional"
+	when 
+		Answer(question == "TEXT FACE, DISPLAY OR COMBINATION?", response == "DISPLAY");
+	then
+		gui.displayQuestion("DO YOU LIKE IT TRADITIONAL?", "YES", "NO");
+end
+
+rule "Swiss"
+	when 
+		Answer(question == "DO YOU LIKE IT TRADITIONAL?", response == "YES");
+	then
+		gui.displayQuestion("IT'S OKAY WITH YOU IF IT'S SWISS?", "YES", "NO");
+end
+
+rule "Helvetica answer2"
+	when 
+		Answer(question == "IT'S OKAY WITH YOU IF IT'S SWISS?", response == "YES");
+	then
+		//gui.displayQuestion("HELVETICA");
+		gui.displayImage("helvetica");
+end
+
+rule "Age"
+	when 
+		Answer(question == "IT'S OKAY WITH YOU IF IT'S SWISS?", response == "NO");
+	then
+		gui.displayQuestion("OKAY, TO A QUESTION OF AGE", "NEW", "OLD");
+end
+
+rule "Interstate answer"
+	when 
+		Answer(question == "OKAY, TO A QUESTION OF AGE", response == "NEW");
+	then
+		//gui.displayQuestion("INTERSTATE");
+		gui.displayImage("interstate");
+end
+
+rule "Franklin Gothic answer"
+	when 
+		Answer(question == "OKAY, TO A QUESTION OF AGE", response == "OLD");
+	then
+		//gui.displayQuestion("FRANKLIN GOTHIC");
+		gui.displayImage("franklin_gothic");
+end
+
+rule "Modern"
+	when 
+		Answer(question == "DO YOU LIKE IT TRADITIONAL?", response == "NO");
+	then
+		gui.displayQuestion("SOMETHING MODERN, YET PLAINSPOKEN", "YES", "NO");
+end
+
+rule "Gotham answer"
+	when 
+		Answer(question == "SOMETHING MODERN, YET PLAINSPOKEN", response == "YES");
+	then
+		//gui.displayQuestion("GOTHAM");
+		gui.displayImage("gotham");
+end
+
+rule "Living in nineties"
+	when 
+		Answer(question == "SOMETHING MODERN, YET PLAINSPOKEN", response == "NO");
+	then
+		gui.displayQuestion("NOT AFRAID TO BE ASKED IF YOU LIVE IN THE NINETIES?", "YES", "NO");
+end
+
+rule "Helvetica answer3"
+	when 
+		Answer(question == "NOT AFRAID TO BE ASKED IF YOU LIVE IN THE NINETIES?", response == "YES");
+	then
+		gui.displayQuestion("HELVETICA");
+		gui.displayImage("helvetica");
+end
+
+rule "FF Meta answer"
+	when 
+		Answer(question == "NOT AFRAID TO BE ASKED IF YOU LIVE IN THE NINETIES?", response == "NO");
+	then
+		//gui.displayQuestion("FF META");
+		gui.displayImage("ff_meta");
+end
+
+//COMBINATION
+rule "Mr Spiekermann"
+	when 
+		Answer(question == "TEXT FACE, DISPLAY OR COMBINATION?", response == "COMBINATION");
+	then
+		gui.displayQuestion("THINK MR. SPIEKERMANN IS MOSTLY RIGHT?", "YES", "NO");
+end
+
+rule "Arnhem answer2"
+	when 
+		Answer(question == "THINK MR. SPIEKERMANN IS MOSTLY RIGHT?", response == "YES");
+	then
+		gui.displayQuestion("ARNHEM");
+		gui.displayImage("arnhem");
+end
+
+rule "Netherlands"
+	when 
+		Answer(question == "THINK MR. SPIEKERMANN IS MOSTLY RIGHT?", response == "NO");
+	then
+		gui.displayQuestion("THE NETHERLANDS IS NICE, RIGHT?", "YES", "NO");
+end
+
+rule "Spiky Serifs"
+	when 
+		Answer(question == "THE NETHERLANDS IS NICE, RIGHT?", response == "YES");
+	then
+		gui.displayQuestion("MMM. SPIKY SERIFS ARE NICE", "OK");
+end
+
+rule "Swift answer"
+	when 
+		Answer(question == "MMM. SPIKY SERIFS ARE NICE", response == "OK");
+	then
+		//gui.displayQuestion("SWIFT");
+		gui.displayImage("swift");
+		
+end
+
+rule "Get out"
+	when 
+		Answer(question == "THE NETHERLANDS IS NICE, RIGHT?", response == "NO");
+	then
+		gui.displayQuestion("GET OUT OF MY FLOWCHART!");
+end
+
+//!!!!!!!!!!!BOOK!!!!!!!!!!!!!!!
+
+rule "Doubt"
+	when 
+		Answer(question == "Start out by choosing the kind of project that you'll need your typeface for:", response == "BOOK");
+	then
+		gui.displayQuestion("ARE YOU COMPLETLY IN DOUBT?", "YES", "NO");
+end
+
+rule "Caslon answer"
+	when 
+		Answer(question == "ARE YOU COMPLETLY IN DOUBT?", response == "YES");
+	then
+		//gui.displayQuestion("CASLON");
+		gui.displayImage("caslon");
+end
+
+rule "Champion in usability"
+	when 
+		Answer(question == "ARE YOU COMPLETLY IN DOUBT?", response == "NO");
+	then
+		gui.displayQuestion("A CHAMPION IN USABILITY, PERHAPS?", "YES", "NO");
+end
+
+rule "Minion answer"
+	when 
+		Answer(question == "A CHAMPION IN USABILITY, PERHAPS?", response == "YES");
+	then
+		//gui.displayQuestion("MINION");
+		gui.displayImage("minion");
+end
+
+rule "Garamond love"
+	when 
+		Answer(question == "A CHAMPION IN USABILITY, PERHAPS?", response == "NO");
+	then
+		gui.displayQuestion("EVERYBODY LOVES GARAMOND", "YES", "NO");
+end
+
+rule "Larger eye"
+	when 
+		Answer(question == "EVERYBODY LOVES GARAMOND", response == "YES");
+	then
+		gui.displayQuestion("BUT PERHAPS ONE WOULD WANT A LARGER EYE?", "YES", "NO");
+end
+
+rule "Sabon answer"
+	when 
+		Answer(question == "BUT PERHAPS ONE WOULD WANT A LARGER EYE?", response == "YES");
+	then
+		//gui.displayQuestion("SABON");
+		gui.displayImage("sabon");
+end
+
+rule "Garamond answer"
+	when 
+		Answer(question == "BUT PERHAPS ONE WOULD WANT A LARGER EYE?", response == "NO");
+	then
+		//gui.displayQuestion("GARAMOND");
+		gui.displayImage("garamond");
+end
+
+rule "Sans serif"
+	when 
+		Answer(question == "EVERYBODY LOVES GARAMOND", response == "NO");
+	then
+		gui.displayQuestion("SO YOU WANT A SANS SERIF, IS THAT THE CASE?", "YES", "NO");
+end
+
+rule "Optima answer"
+	when 
+		Answer(question == "SO YOU WANT A SANS SERIF, IS THAT THE CASE?", response == "YES");
+	then
+		//gui.displayQuestion("OPTIMA");
+		gui.displayImage("optima");
+end
+
+rule "Eric Gill"
+	when 
+		Answer(question == "SO YOU WANT A SANS SERIF, IS THAT THE CASE?", response == "NO");
+	then
+		gui.displayQuestion("WHAT IS YOUR OPINION OF ERIC GILL", "GOOD", "BAD");
+end
+
+rule "Joanna answer"
+	when 
+		Answer(question == "WHAT IS YOUR OPINION OF ERIC GILL", response == "GOOD");
+	then
+		//gui.displayQuestion("JOANNA");
+		gui.displayImage("joanna");
+end
+
+
+rule "Humanistic forms"
+	when 
+		Answer(question == "WHAT IS YOUR OPINION OF ERIC GILL", response == "BAD");
+	then
+		gui.displayQuestion("HUMANISTIC FORMS PLEASE YOUR EYE?", "YES", "NO");
+end
+
+rule "Baskerville answer"
+	when 
+		Answer(question == "HUMANISTIC FORMS PLEASE YOUR EYE?", response == "NO");
+	then
+		//gui.displayQuestion("BASKERVILLE");
+		gui.displayImage("baskerville");
+end
+
+rule "Cheese"
+	when 
+		Answer(question == "HUMANISTIC FORMS PLEASE YOUR EYE?", response == "YES");
+	then
+		gui.displayQuestion("OKAY TO A QUESTION OF FOOD", "GOUDA", "EMMENTAL");
+end
+
+rule "FF Scala answer"
+	when 
+		Answer(question == "OKAY TO A QUESTION OF FOOD", response == "GOUDA");
+	then
+		//gui.displayQuestion("FF SCALA");
+		gui.displayImage("ff_scala");
+end
+
+rule "Syntax answer"
+	when 
+		Answer(question == "OKAY TO A QUESTION OF FOOD", response == "EMMENTAL");
+	then
+		gui.displayQuestion("SYNTAX");
+		
+end
+		
+
